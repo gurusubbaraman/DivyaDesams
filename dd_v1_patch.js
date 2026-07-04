@@ -811,6 +811,7 @@
     const googleUrl = `https://www.google.com/maps?q=${lat},${lng}&z=17`;
     const appleUrl = `https://maps.apple.com/?ll=${lat},${lng}&z=17&q=${encodeURIComponent(temple.temple_name)}`;
     const osmUrl = `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lng}&zoom=17`;
+    const coords = `${lat.toFixed(4)}, ${lng.toFixed(4)}`;
     const shareText = `${temple.temple_name} — ${coords}`;
     const shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' https://gurusubbaraman.github.io/divya-desams/')}`;
     
