@@ -1722,38 +1722,78 @@
   // 19. SIDEBAR TEMPLE LIST
   // ============================================================
   function buildSidebarList() {
-    const listContainer = document.getElementById('temple-list');
-    if (!listContainer) return;
+  const listContainer = document.getElementById('temple-list');
+  if (!listContainer) return;
+  
+  // Build main list (Divya Desams, celestial included, Abhimana excluded)
+  const mainListHTML = DIVYA_DESAMS.filter(t => !t.is_abhimana).map(temple => {
+    const badgeColor = temple.is_celestial ? COLORS.paramapadamPurple : COLORS.vaishnavaBlue;
     
-    listContainer.innerHTML = DIVYA_DESAMS.map(temple => {
-      if (temple.is_abhimana) return ''; // Skip abhimana from main list
-      
-      const badgeColor = temple.is_celestial ? COLORS.paramapadamPurple : COLORS.vaishnavaBlue;
-      
-      return `
+    return `
+      <div style="padding: 10px 8px; border-bottom: 1px solid ${COLORS.ivoryDark}; 
+                  cursor: pointer; transition: background 0.15s;"
+           onmouseover="this.style.background='${COLORS.ivoryDark}'"
+           onmouseout="this.style.background='transparent'"
+           onclick="window.openTemplePopup(${temple.sno})">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="background: ${badgeColor}; color: white; padding: 2px 6px; 
+                       border-radius: 4px; font-size: 0.7rem; font-weight: 700; min-width: 24px; text-align: center;">
+            ${temple.sno}
+          </span>
+          <div style="flex: 1;">
+            <div style="font-size: 0.82rem; font-weight: 600; color: ${COLORS.deepIndigo};">
+              ${escapeHtml(temple.temple_name_short || temple.temple_name)}
+            </div>
+            <div style="font-size: 0.7rem; color: ${COLORS.deepIndigo}; opacity: 0.7; margin-top: 1px;">
+              ${escapeHtml(temple.town)} · ${escapeHtml(temple.region)}
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  // Build Abhimana Kshetram section
+  const abhimanaTemples = DIVYA_DESAMS.filter(t => t.is_abhimana);
+  const abhimanaHTML = abhimanaTemples.length > 0 ? `
+    <div style="margin-top: 16px; padding-top: 12px; border-top: 2px dashed ${COLORS.mannargudiOrange};">
+      <div style="font-size: 0.68rem; font-weight: 700; text-transform: uppercase; 
+                  letter-spacing: 0.5px; color: ${COLORS.mannargudiOrange}; 
+                  margin-bottom: 4px; padding: 0 8px;">
+        ⭐ Abhimana Kshetrams
+      </div>
+      <div style="font-size: 0.7rem; color: ${COLORS.deepIndigo}; opacity: 0.75; 
+                  padding: 0 8px; margin-bottom: 8px; font-style: italic;">
+        Not among the 108 Divya Desams
+      </div>
+      ${abhimanaTemples.map(temple => `
         <div style="padding: 10px 8px; border-bottom: 1px solid ${COLORS.ivoryDark}; 
-                    cursor: pointer; transition: background 0.15s;"
-             onmouseover="this.style.background='${COLORS.ivoryDark}'"
-             onmouseout="this.style.background='transparent'"
+                    cursor: pointer; transition: background 0.15s;
+                    background: linear-gradient(to right, rgba(218, 165, 32, 0.05), transparent);"
+             onmouseover="this.style.background='rgba(218, 165, 32, 0.15)'"
+             onmouseout="this.style.background='linear-gradient(to right, rgba(218, 165, 32, 0.05), transparent)'"
              onclick="window.openTemplePopup(${temple.sno})">
           <div style="display: flex; align-items: center; gap: 8px;">
-            <span style="background: ${badgeColor}; color: white; padding: 2px 6px; 
+            <span style="background: ${COLORS.mannargudiOrange}; color: white; padding: 2px 6px; 
                          border-radius: 4px; font-size: 0.7rem; font-weight: 700; min-width: 24px; text-align: center;">
-              ${temple.sno}
+              ⭐
             </span>
             <div style="flex: 1;">
               <div style="font-size: 0.82rem; font-weight: 600; color: ${COLORS.deepIndigo};">
                 ${escapeHtml(temple.temple_name_short || temple.temple_name)}
               </div>
               <div style="font-size: 0.7rem; color: ${COLORS.deepIndigo}; opacity: 0.7; margin-top: 1px;">
-                ${escapeHtml(temple.town)} · ${escapeHtml(temple.region)}
+                ${escapeHtml(temple.town)} · Abhimana Kshetram
               </div>
             </div>
           </div>
         </div>
-      `;
-    }).join('');
-  }
+      `).join('')}
+    </div>
+  ` : '';
+  
+  listContainer.innerHTML = mainListHTML + abhimanaHTML;
+}
 
   // ============================================================
   // 20. INITIALIZATION
