@@ -643,9 +643,10 @@
   // ============================================================
   // G. UTILITY FUNCTIONS
   // ============================================================
-  function escapeHtml(str) {
+    function escapeHtml(str) {
     return String(str || '').replace(/[&<>"']/g, function(c) {
-      return { '&': '&', '<': '', '>': '>', '"': '"', "'": '';' }[c];
+      var map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+      return map[c];
     });
   }
 
