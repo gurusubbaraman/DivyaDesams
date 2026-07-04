@@ -804,38 +804,37 @@
     `;
   }
 
-  function buildMapActions(temple) {
-    if (temple.is_celestial || !temple.lat) return '';
-    
-    const { lat, lng } = temple;
-    const googleUrl = `https://www.google.com/maps?q=${lat},${lng}&z=17`;
-    const appleUrl = `https://maps.apple.com/?ll=${lat},${lng}&z=17&q=${encodeURIComponent(temple.temple_name)}`;
-    const osmUrl = `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lng}&zoom=17`;
-    const coords = `${lat.toFixed(4)}, ${lng.toFixed(4)}`;
-    const shareText = `${temple.temple_name} — ${coords}`;
-    const shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' https://gurusubbaraman.github.io/divya-desams/')}`;
-    
-    return `
-      <div class="map-actions">
-        ${googleUrl}" target="_blank" rel= "noopener" class="map-btn">
-          <span class="map-btn-icon">🗺️</span>
-          <span>Google</span>
-        </a>
-        ${appleUrl}" target="_blank" rel="nopener" class="map-btn">
-          <span class="map-btn-icon">🍎</span>
-          <span>Apple</span>
-        </a>
-        ${osmUrl}" target="blank" rel="nopener" class= "map-btn">
-          <span class="map-btn-icon">🌍</span>
-          <span>OSM</span>
-        </a>
-        ${shareUrl}${appleUrl}${osmUrl}${shareUrl}
-          <span class="map-btn-icon">🔗</span>
-          <span>Share</span>
-        </a>
-      </div>
-    `;
-  }
+function buildMapActions(temple) {
+  if (temple.is_celestial || !temple.lat) return '';
+  
+  var lat = temple.lat;
+  var lng = temple.lng;
+  var googleUrl = 'https://www.google.com/maps?q=' + lat + ',' + lng + '&z=17';
+  var appleUrl = 'https://maps.apple.com/?ll=' + lat + ',' + lng + '&z=17&q=' + encodeURIComponent(temple.temple_name);
+  var osmUrl = 'https://www.openstreetmap.org/?mlat=' + lat + '&mlon=' + lng + '&zoom=17';
+  var coords = lat.toFixed(4) + ', ' + lng.toFixed(4);
+  var shareText = temple.temple_name + ' - ' + coords;
+  var shareUrl = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(shareText + ' https://gurusubbaraman.github.io/DivyaDesams/');
+  
+  return '<div class="map-actions">' +
+    '' + googleUrl + '' +
+      '<span class="map-btn-icon">🗺️</span>' +
+      '<span>Google</span>' +
+    '</a>' +
+    '' + appleUrl + '' +
+      '<span class="map-btn-icon">🍎</span>' +
+      '<span>Apple</span>' +
+    '</a>' +
+    '' + osmUrl + '="noopener" class="map-btn">' +
+      '<span class="map-btn-icon">🌍</span>' +
+      '<span>OSM</span>' +
+    '</a>' +
+    '' + shareUrl + '' +
+      '<span class="map-btn-icon">🔗</span>' +
+      '<span>Share</span>' +
+    '</a>' +
+    '</div>';
+}
 
   // ============================================================
   // 4. TAB BAR
