@@ -887,32 +887,48 @@ Serif+Tamil:wght@500;700&family=Playfair+Display:wght@700&display=swap" rel="sty
 
 <!-- Initialize Leaflet Map -->
 <script>
-  // Basic Leaflet map setup — will be extended when temple markers are added
-  window.leafletMap = L.map('map', {
-    zoomControl: false
-  }).setView([13.5, 79.5], 6);
+  function initMap() {
+    if (typeof L === 'undefined') {
+      console.log('[map] Waiting for Leaflet to load...');
+      setTimeout(initMap, 100);
+      return;
+    }
+    
+    console.log('[map] Leaflet loaded — initializing map');
+    
+    try {
+      window.leafletMap = L.map('map', { zoomControl: false }).setView([13.5, 79.5], 6);
+      L.control.zoom({ position: 'bottomright' }).addTo(window.leafletMap);
+      
+      var baseMaps = {
+        "Streets (OSM)": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '© OpenStreetMap contributors',
+          maxZoom: 19
+        }),
+        "Satellite (Esri)": L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+          attribution: 'Tiles © Esri, Maxar, Earthstar Geographics',
+          maxZoom: 19
+        }),
+        "National Geographic": L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {
+          attribution: 'Tiles © Esri National Geographic',
+          maxZoom: 16
+        })
+      };
+      
+      baseMaps["Streets (OSM)"].addTo(window.leafletMap);
+      L.control.layers(baseMaps, null, { position: 'topright', collapsed: true }).addTo(window.leafletMap);
+      
+      console.log('[map] ✅ Map initialized successfully');
+    } catch(e) {
+      console.error('[map] ❌ Initialization failed:', e.message);
+    }
+  }
   
-  // Add zoom control in bottom-right
-  L.control.zoom({ position: 'bottomright' }).addTo(window.leafletMap);
-  
-  // Base map layers
-  const baseMaps = {
-    "🗺️ Streets (OSM)": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; https://www.openstreetmap.org/copyrightOpenStreetMap</a> contributors',
-      maxZoom: 19
-    }),
-    "🛰️ Satellite (Esri)": L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-      attribution: 'Tiles &copy; https://www.esri.com &mdash; Source: Esri, Maxar, Earthstar Geographics',
-      maxZoom: 19
-    }),
-    "🌍 National Geographic": L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {
-      attribution: 'Tiles &copy; https://www.esri.com &mdash; National Geographic',
-      maxZoom: 16
-    })
-  };
-  
-  baseMaps["🗺️ Streets (OSM)"].addTo(window.leafletMap);
-  L.control.layers(baseMaps, null, { position: 'topright', collapsed: true }).addTo(window.leafletMap);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMap);
+  } else {
+    initMap();
+  }
 </script>
 
 <!-- Load the main patch (Section A + Section B) -->
