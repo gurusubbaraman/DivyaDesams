@@ -817,19 +817,19 @@
     
     return `
       <div class="map-actions">
-        ${googleUrl}="noopener" class="map-btn">
+        ${googleUrl}
           <span class="map-btn-icon">🗺️</span>
           <span>Google</span>
         </a>
-        ${appleUrl}="noopener" class="map-btn">
+        ${appleUrl}
           <span class="map-btn-icon">🍎</span>
           <span>Apple</span>
         </a>
-        ${osmUrl}="noopener" class="map-btn">
+        ${osmUrl}
           <span class="map-btn-icon">🌍</span>
           <span>OSM</span>
         </a>
-        ${shareUrl}="noopener" class="map-btn">
+        ${shareUrl}
           <span class="map-btn-icon">🔗</span>
           <span>Share</span>
         </a>
