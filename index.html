@@ -46,7 +46,19 @@ main{display:flex;height:calc(100vh - 60px);min-height:600px}
 .posture-pills{position:absolute;top:12px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:999;background:white;padding:6px 10px;border-radius:20px;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
 .posture-pill{padding:5px 12px;background:white;border:1.5px solid var(--ivory-dark);border-radius:12px;font-size:0.72rem;font-weight:500;cursor:pointer;color:var(--deep-indigo);font-family:inherit}
 .posture-pill.active{background:var(--vaishnava-blue);color:white;border-color:var(--vaishnava-blue)}
-#journey-panel{position:fixed;bottom:20px;left:20px;width:280px;background:white;border:2px solid var(--gold);border-radius:12px;padding:12px;box-shadow:0 4px 20px rgba(0,0,0,0.15);z-index:1100}
+#journey-panel{
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  width:280px;
+  background:white;
+  border:2px solid var(--gold);
+  border-radius:12px;
+  padding:14px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.25), 0 4px 12px rgba(30,90,160,0.15);
+  z-index:1100;
+  backdrop-filter: blur(8px);
+}
 .journey-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--ivory-dark)}
 .journey-title{font-size:0.9rem;font-weight:700;color:var(--vaishnava-blue)}
 .journey-buttons{display:grid;grid-template-columns:1fr 1fr;gap:6px}
@@ -109,6 +121,7 @@ footer a{color:var(--gold);text-decoration:none}
 <div id="journey-panel">
 <div class="journey-header">
 <div class="journey-title">🚶 Trace Alwar Pilgrimage</div>
+,button class="journey-minimize" id="journey-minimize-btn" title="Minimize panel">-</button>
 </div>
 <div class="journey-buttons">
 <button class="journey-btn" data-alwar="nammalvar">🌸 Nammalvar<small>37 Divya Desams</small></button>
