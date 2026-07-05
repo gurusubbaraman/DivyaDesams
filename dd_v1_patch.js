@@ -825,7 +825,7 @@ function buildMapActions(temple) {
       '<span class="map-btn-icon">🍎</span>' +
       '<span>Apple</span>' +
     '</a>' +
-    '' + osmUrl + '="noopener" class="map-btn">' +
+    '' + osmUrl + '' +
       '<span class="map-btn-icon">🌍</span>' +
       '<span>OSM</span>' +
     '</a>' +
