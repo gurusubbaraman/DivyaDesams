@@ -8,7 +8,7 @@ An interactive digital directory of the **108 Divya Desams** — the sacred Vish
 
 *The 12 Alwars whose pasurams define the sacred geography of Sri Vaishnavism.*
 
-🌐 **Live site:** https://gurusubbaraman.github.io/divya-desams/
+🌐 **Live site:** https://gurusubbaraman.github.io/DivyaDesams/
 
 ## ✨ Features
 
