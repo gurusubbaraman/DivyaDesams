@@ -2,7 +2,7 @@
 
 > சத்யம் ஜ்ஞானமநந்தம் ப்ரம்ம / **ஓம் நமோ நாராயணா** 🕉️
 
-An interactive digital directory of the **108 Divya Desams** — the sacred Vishnu temples glorified by the twelve Alwars (Divine Poets) in the *Nalayira Divya Prabandham*.
+An interactive online digital directory of the **108 Divya Desams** — the sacred Vishnu temples glorified by the twelve Alwars (Divine Poets) in the *Nalayira Divya Prabandham*.
 
 ./assets/12-alwars-cover.jpg
 
