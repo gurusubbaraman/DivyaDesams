@@ -1,4 +1,4 @@
-# 🌸 108 Divya Desams — The Sacred Abodes of Maha Vishnu
+# 🌸 108 Divya Desams —- The Sacred Abodes of Maha Vishnu
 
 > சத்யம் ஜ்ஞானமநந்தம் ப்ரம்ம / **ஓம் நமோ நாராயணா** 🕉️
 
