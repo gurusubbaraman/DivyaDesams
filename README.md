@@ -6,7 +6,7 @@ An interactive digital directory of the **108 Divya Desams** — the sacred Vish
 
 ./assets/12-alwars-cover.jpg
 
-*The 12 Alwars whose pasurams define the sacred geography of Sri Vaishnavism.*
+*The twelve Alwars whose pasurams define the sacred geography of Sri Vaishnavism.*
 
 🌐 **Live site:** https://gurusubbaraman.github.io/DivyaDesams/
 
